@@ -1,0 +1,30 @@
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie-table-container {
+    width: calc(100vw - 300px);
+    height: calc(100vh - 50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+.movie-search {
+    height: 40px;
+    width: calc(100vw - 500px);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 0.5px solid lightgray;
+    padding-left: 15px;
+}
+
+.movie-search:focus{
+    outline: none;
+    border: 0.5px solid rgb(165, 164, 164);
+    box-shadow: 0px 10px 10px -6px grey;
+}

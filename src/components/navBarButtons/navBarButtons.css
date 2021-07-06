@@ -1,0 +1,15 @@
+.navbar-btn {
+    padding: 0 15px;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    background-color: #40514E;
+    color: white;
+    font-size: large;
+}
+
+.navbar-btn:hover{
+    cursor: pointer;
+    color: #40514E;
+    background-color: white;
+}

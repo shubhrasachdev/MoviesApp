@@ -1,0 +1,25 @@
+.pagination {
+    width: calc(100vw - 400px);
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.pagination-btn {
+    height: 40px;
+    width: 40px;
+    border: 1.5px solid #11999E;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-btn:hover{
+    cursor: pointer;
+    background-color: #11999E;
+    color: white;
+}
