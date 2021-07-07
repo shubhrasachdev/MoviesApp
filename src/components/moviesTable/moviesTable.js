@@ -17,7 +17,6 @@ class MoviesTable extends React.Component{
             rating: "Rating"
         }
         let rows = [];
-
         for(let movie of data){
             rows.push(<MoviesTableRow key={movie.sno} data={movie}/>);
         }

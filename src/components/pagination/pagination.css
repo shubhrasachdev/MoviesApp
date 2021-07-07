@@ -18,7 +18,8 @@
     align-items: center;
 }
 
-.pagination-btn:hover{
+.pagination-btn:hover,
+.pagination-btn.active{
     cursor: pointer;
     background-color: #11999E;
     color: white;
