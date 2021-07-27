@@ -137,14 +137,15 @@ class MoviesList extends React.Component {
         }
 
         return (
+
             <div className="main-container">
                 <NavBar/>
                 <SideBar/>
                 <div className="movie-table-container">
                     <div className="filters">
                         <input className="movie-search" type="text" placeholder="Search for movies."  value={this.state.search} onChange={this.changeSearch}/>
-                        <select className="rating-dropdown" name="Rating" onChange={this.changeRating}>
-                            <option value={"all"} selected>All Ratings</option>
+                        <select className="rating-dropdown" name="Rating" onChange={this.changeRating} style={{color: "#86817c", fontFamily: "Segoe UI", fontWeight: 400}}>Rating
+                            <option value={"all"} >All Ratings</option>
                             <option value={0}>0</option>
                             <option value={1}>1</option>
                             <option value={2}>2</option>

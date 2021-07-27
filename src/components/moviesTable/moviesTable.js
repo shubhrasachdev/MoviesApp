@@ -11,8 +11,8 @@ class MoviesTable extends React.Component{
     render() {
         let data = this.props.data;
         let header = {
-            sno: "S. No.",
-            name: "Movie Name",
+            sno: "#",
+            name: "Name",
             genre: "Genre",
             rating: "Rating"
         }

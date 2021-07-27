@@ -5,7 +5,8 @@
     align-items: center;
     background-color: #40514E;
     color: white;
-    font-size: large;
+    font-size: 1.1rem;
+    font-weight: 400;
 }
 
 .navbar-btn:hover{
