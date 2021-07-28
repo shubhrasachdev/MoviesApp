@@ -4,13 +4,18 @@ import NavBar from '../../components/navBar/navBar';
 import SideBar from '../../components/sideBar/sideBar';
 import MoviesTable from '../../components/moviesTable/moviesTable';
 import Pagination from '../../components/pagination/pagination';
+import axios from 'axios';
+import Loader from '../../components/loader/loader';
+import { HandleGetMovies } from './dataManager';
 class MoviesList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             search: "",
             pageNum: 1,
-            rating: "all"
+            rating: "all",
+            data: [],
+            loader: true
         };
     }
     changeSearch = (e) => {
@@ -33,102 +38,32 @@ class MoviesList extends React.Component {
         });
     }
 
-    render() {
-        let data = [
-            {
-                sno: 1, 
-                name: "Grand Budapest Hotel", 
-                genre: "Comedy",
-                rating: 4
-            },
-            {
-                sno: 2, 
-                name: "Interstellar", 
-                genre: "Sci-Fi",
-                rating: 5
-            },
-            {
-                sno: 3, 
-                name: "Inside Out", 
-                genre: "Kids",
-                rating: 4
-            },
-            {
-                sno: 4, 
-                name: "Harry Potter", 
-                genre: "Fantasy",
-                rating: 3
-            },
-            {
-                sno: 5, 
-                name: "The Holiday", 
-                genre: "Rom-com",
-                rating: 3
-            },
-            {
-                sno: 6, 
-                name: "The Shining", 
-                genre: "Horror",
-                rating: 3
-            },
-            {
-                sno: 7, 
-                name: "Iron Man", 
-                genre: "Superhero",
-                rating: 3
-            },
-            {
-                sno: 8, 
-                name: "Knocked Up", 
-                genre: "Comedy",
-                rating: 2
-            },
-            {
-                sno: 9, 
-                name: "Casablanca", 
-                genre: "Romance",
-                rating: 5
-            },
-            {
-                sno: 10, 
-                name: "The Maze Runner", 
-                genre: "Action",
-                rating: 3
-            },
-            {
-                sno: 11, 
-                name: "Bad Neighbours", 
-                genre: "Comedy",
-                rating: 2
-            },
-            {
-                sno: 12, 
-                name: "Superbad", 
-                genre: "Comedy",
-                rating: 4
-            },
-            {
-                sno: 13, 
-                name: "Trainwreck", 
-                genre: "Rom-com",
-                rating: 3
-            },
-            {
-                sno: 14, 
-                name: "Transporter", 
-                genre: "Action",
-                rating: 3
-            }
-        ];
+    async componentDidMount() {
+        let data = await HandleGetMovies(); 
+        this.setState({
+            data: data,
+            loader: false
+        });
+    } 
 
+    render() {
+        let data = this.state.data;
         let filteredData = data.filter((movie) => {
             if(this.state.rating !== "all") return movie.rating === this.state.rating;
             return true;
         });
+        
         filteredData = filteredData.filter((movie) => {
             let movieName = movie.name.toLowerCase();
             let search = this.state.search.toLowerCase();
             return movieName.includes(search);
+        });
+
+
+        let sno = 1;
+        filteredData  = filteredData.map((movie) => {
+            movie.sno = sno++;
+            return movie;
         });
 
         let finalData = [];
@@ -154,6 +89,7 @@ class MoviesList extends React.Component {
                             <option value={5}>5</option>
                         </select>
                     </div>
+                    {this.state.loader ? <Loader></Loader> : ""}
                     <MoviesTable data={finalData}/>
                     <Pagination totalMovies={filteredData.length} changePage={this.changePage} activePageNum={this.state.pageNum}/>
                 </div>

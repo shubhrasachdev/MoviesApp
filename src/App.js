@@ -1,11 +1,14 @@
 import './App.css';
 import React from 'react';
-import MoviesList from './containers/moviesList/moviesList';
+import {BrowserRouter} from "react-router-dom";
+import Navigator from './navigator';
 class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
-				<MoviesList/>
+				<BrowserRouter>
+					<Navigator></Navigator>
+				</BrowserRouter>
 			</div>
 		);
 	}
