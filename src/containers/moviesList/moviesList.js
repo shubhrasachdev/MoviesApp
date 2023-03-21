@@ -4,9 +4,9 @@ import NavBar from '../../components/navBar/navBar';
 import SideBar from '../../components/sideBar/sideBar';
 import MoviesTable from '../../components/moviesTable/moviesTable';
 import Pagination from '../../components/pagination/pagination';
-import axios from 'axios';
 import Loader from '../../components/loader/loader';
 import { HandleGetMovies } from './dataManager';
+import { connect } from 'react-redux';
 class MoviesList extends React.Component {
     constructor(props) {
         super(props);
@@ -44,6 +44,7 @@ class MoviesList extends React.Component {
             data: data,
             loader: false
         });
+        // this.props.updateMovies(data); 
     } 
 
     render() {
@@ -79,7 +80,7 @@ class MoviesList extends React.Component {
                 <div className="movie-table-container">
                     <div className="filters">
                         <input className="movie-search" type="text" placeholder="Search for movies."  value={this.state.search} onChange={this.changeSearch}/>
-                        <select className="rating-dropdown" name="Rating" onChange={this.changeRating} style={{color: "#86817c", fontFamily: "Segoe UI", fontWeight: 400}}>Rating
+                        <select className="rating-dropdown" name="Rating" onChange={this.changeRating} style={{color: "#86817c", fontFamily: "Segoe UI", fontWeight: 400}}>
                             <option value={"all"} >All Ratings</option>
                             <option value={0}>0</option>
                             <option value={1}>1</option>
@@ -98,5 +99,16 @@ class MoviesList extends React.Component {
         );
     }
 }
+const mapStateToProps = state => {
+    return {
+        data: state.data
+    }
+}
 
-export default MoviesList;
+const mapActionToProps = dispatch => {
+    return {
+        updateMovies: (data) => dispatch({type: "updateMovies", data: data})
+    }
+}
+
+export default connect(mapStateToProps, mapActionToProps)(MoviesList);

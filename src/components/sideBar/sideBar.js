@@ -9,6 +9,7 @@ class SideBar extends React.Component{
     }
 
     render() { // initial rendering, and re-rendering on any state changes
+        
         return(
             <div className="sidebar">
                 <SideBarButton text="All Genres"/>
